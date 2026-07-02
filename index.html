@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Story</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="particles"></div>
+<canvas id="confettiCanvas"></canvas>
+
+
+
+<div id="app">
+
+  <div id="screen-welcome" class="screen active">
+    <div class="welcome-content">
+      <div class="heart-beat">&#10084;</div>
+      <h1 class="glow-text">A Love Story<br>Waiting to Begin</h1>
+      <p class="fade-in">Every great love starts with a single step.<br>Are you ready to take yours?</p>
+      <button class="glow-btn" onclick="goToScreen('gender')">Begin Your Journey</button>
+    </div>
+  </div>
+
+  <div id="screen-gender" class="screen">
+    <div class="gender-content">
+      <h2 class="slide-in">Tell me about yourself...</h2>
+      <p class="fade-in">Who is falling in love today?</p>
+      <div class="gender-btns">
+        <button class="gender-btn" onclick="selectGender('male')">
+          <span class="gender-icon">&#9794;</span>
+          <span>Male</span>
+        </button>
+        <button class="gender-btn" onclick="selectGender('female')">
+          <span class="gender-icon">&#9792;</span>
+          <span>Female</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="screen-quiz" class="screen">
+    <div class="quiz-content">
+      <div class="quiz-progress">
+        <div class="progress-bar"><div id="progressFill"></div></div>
+        <span id="questionNum">1/15</span>
+      </div>
+      <h2 id="quizQuestion" class="slide-in"></h2>
+      <div id="quizOptions" class="quiz-options"></div>
+    </div>
+  </div>
+
+  <div id="screen-final" class="screen">
+    <div class="final-content">
+      <h2 id="finalQuestion" class="zoom-in"></h2>
+      <div class="final-btns">
+        <button class="glow-btn yes-btn" onclick="answerFinal(true)">Yes</button>
+        <button class="glow-btn no-btn" onclick="answerFinal(false)">No</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="screen-success" class="screen">
+    <div class="result-content">
+      <div class="hearts-rain">&#10084; &#10084; &#10084;</div>
+      <h1 class="glow-text">&#10084; It's a Yes! &#10084;</h1>
+      <p class="result-sub">My heart is yours forever.</p>
+      <div id="happyPoem" class="poem"></div>
+      <button class="glow-btn" onclick="goToScreen('surprise')">Open Your Surprises</button>
+    </div>
+  </div>
+
+  <div id="screen-heartbreak" class="screen">
+    <div class="result-content">
+      <div class="broken-heart">&#128148;</div>
+      <h2>My Heart...</h2>
+      <p>It's okay. Some love stories aren't meant to be.</p>
+      <div id="sadPoem" class="poem"></div>
+      <button class="glow-btn" onclick="goToScreen('surprise')">Still, Here Are Some Words</button>
+    </div>
+  </div>
+
+  <div id="screen-surprise" class="screen">
+    <div class="surprise-content">
+      <h2 class="glow-text">Open Your Surprises</h2>
+      <p>Click each box to reveal a hidden message</p>
+      <div id="surpriseBoxes" class="surprise-grid"></div>
+      <button class="glow-btn" onclick="restartApp()">Start Over</button>
+    </div>
+  </div>
+
+</div>
+
+<div id="music-status">&#9835; Choose your gender to start music</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyARZsCGyMD2ij-aJXkAvUta1bYtt2ZblsI",
+    authDomain: "love-web-70bc4.firebaseapp.com",
+    projectId: "love-web-70bc4",
+    storageBucket: "love-web-70bc4.firebasestorage.app",
+    messagingSenderId: "996793557012",
+    appId: "1:996793557012:web:5eb8f6cd6ce7d0e7f34701"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+  emailjs.init('2sUH4UOUREwyjv7xp');
+</script>
+<script src="script.js"></script>
+</body>
+</html>
